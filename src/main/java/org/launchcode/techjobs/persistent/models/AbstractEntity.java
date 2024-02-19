@@ -9,10 +9,15 @@ import jakarta.validation.constraints.Size;
 
 import java.util.Objects;
 
+@MappedSuperclass
 public abstract class AbstractEntity {
 
+    @Id
+    @GeneratedValue
     private int id;
 
+    @NotNull(message = "Name required")
+    @Size(max = 100)
     private String name;
 
     public int getId() {
@@ -27,11 +32,11 @@ public abstract class AbstractEntity {
         this.name = name;
     }
 
+
     @Override
     public String toString() {
-        return name;
+return name;
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -39,6 +44,7 @@ public abstract class AbstractEntity {
         AbstractEntity that = (AbstractEntity) o;
         return id == that.id;
     }
+
 
     @Override
     public int hashCode() {
